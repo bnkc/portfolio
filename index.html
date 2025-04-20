@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lev Ostatnigrosh</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #fdfdfd;
+        --fg: #0f0f0f;
+        --accent: #2563eb;
+        --muted: #6b7280;
+        --card: #ffffff;
+        --radius: 0.75rem;
+        --shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.6;
+      }
+
+      header {
+        padding: 4rem 1rem 5rem;
+        text-align: center;
+      }
+
+      header h1 {
+        font-size: 2.8rem;
+        margin: 0 0 0.25rem;
+        font-weight: 700;
+      }
+
+      header p {
+        margin: 0.25rem 0 1rem;
+        font-size: 1.1rem;
+        color: var(--muted);
+      }
+
+      nav {
+        margin-top: 1.5rem;
+      }
+
+      nav a {
+        margin: 0 0.75rem;
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      section {
+        max-width: 48rem;
+        margin: 0 auto 4rem;
+        padding: 0 1rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .about {
+        display: grid;
+        grid-template-columns: 128px 1fr;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .about img {
+        width: 128px;
+        height: 128px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: var(--shadow);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: transform 0.15s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+      }
+
+      .card h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.2rem;
+      }
+
+      .card p {
+        margin: 0 0 1rem;
+        flex: 1;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .card a {
+        align-self: flex-start;
+        color: var(--accent);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .contact-links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .contact-links a {
+        color: var(--accent);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 1rem 4rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 640px) {
+        .about {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .about img {
+          margin: 0 auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Lev Ostatnigrosh</h1>
+      <p>ML Engineer @ American Honda | Python / Rust Enthusiast</p>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- About -->
+      <section id="about">
+        <h2 class="section-title">About</h2>
+        <div class="about">
+          <img src="assets/lev.jpg" alt="Lev Ostatnigrosh" />
+          <p>
+            I am a Machine Learning &amp; Backend Engineer with 3+ years of
+            professional experience building scalable services in Python and
+            Rust. I currently work at <strong>American Honda</strong> where I
+            design custom vector databases and ML-driven warranty analytics. In
+            my free time I experiment with high‑performance tooling, contribute
+            to open‑source and explore Colorado’s climbing spots.
+          </p>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects">
+        <h2 class="section-title">Selected Projects</h2>
+        <div class="projects-grid">
+          <div class="card">
+            <h3>emval</h3>
+            <p>
+              Blazingly fast Python email validator powered by Rust – validates
+              &gt;100k addresses / s.
+            </p>
+            <a href="https://github.com/bnkc/emval" target="_blank"
+              >GitHub ↗</a
+            >
+          </div>
+
+          <div class="card">
+            <h3>Vector DB for Warranty</h3>
+            <p>
+              Custom vector database ingesting 100M+ warranty records, driving
+              automated part‑failure clustering at Honda.
+            </p>
+            <a href="#" target="_blank">Internal</a>
+          </div>
+
+          <div class="card">
+            <h3>ChatPDF (Matrisk AI)</h3>
+            <p>
+              Co‑founded top "chat with PDF" platform → 30k users &amp; $5k MRR;
+              built the parsing + retrieval backend.
+            </p>
+            <a href="https://github.com/your-repo" target="_blank">GitHub ↗</a>
+          </div>
+
+          <div class="card">
+            <h3>Blog &amp; Talks</h3>
+            <p>
+              Occasional writings on ML ops, data engineering and Rust. Slides
+              and recordings are archived here.
+            </p>
+            <a href="#blog">Read ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Blog / posts will live under /blog when Jekyll is enabled -->
+      <section id="blog">
+        <h2 class="section-title">Latest Posts</h2>
+        <p>Coming soon&hellip; (create Markdown posts in <code>_posts</code>)</p>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-links">
+          <a href="mailto:lev@example.com">Email</a>
+          <a href="https://github.com/bnkc" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/ostatnigrosh/" target="_blank"
+            >LinkedIn</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer>© 2025  Lev Ostatnigrosh. Built with ♥ and GitHub Pages.</footer>
+  </body>
+</html>
