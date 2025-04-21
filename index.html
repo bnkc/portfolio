@@ -1,160 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>lev ostatnigrosh</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lev ostatnigrosh</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    :root {
-      --bg: #fcfcfd;
-      --fg: #262f40;
-      --accent: #556dbe;     /* mellow steel‑blue */
-      --muted: #6e7a91;
-    }
+    <style>
+      :root {
+        --bg: #fcfcfd;
+        --fg: #262f40;
+        --accent: #556dbe; /* mellow steel‑blue */
+        --muted: #6e7a91;
+      }
 
-    *,*::before,*::after{box-sizing:border-box;margin:0}
-    html{scroll-behavior:smooth}
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
 
-    body{
-      background:var(--bg);
-      color:var(--fg);
-      font-family:"Inter",system-ui,sans-serif;
-      font-size:18px;
-      line-height:1.8;
-    }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 18px;
+        line-height: 1.8;
+      }
 
-    #wrap{max-width:52rem;margin:0 auto;padding:0 1.2rem}
+      #wrap {
+        max-width: 52rem;
+        margin: 0 auto;
+        padding: 0 1.2rem;
+      }
 
-    /* ───────── headings ───────── */
-    h1{
-      font-family:"Space Grotesk",sans-serif;
-      font-weight:600;
-      margin:3rem 0 1rem;
-      display:flex;align-items:center;gap:.55rem;
-      text-transform:lowercase;
-      font-size:clamp(2.3rem,4.5vw + .5rem,3.1rem);
-    }
-    h1::before{content:"↬";color:var(--accent);font-size:3rem;line-height:0}
+      /* ───────── headings ───────── */
+      h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        margin: 3rem 0 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        text-transform: lowercase;
+        font-size: clamp(2.3rem, 4.5vw + 0.5rem, 3.1rem);
+      }
+      h1::before {
+        content: "↬";
+        color: var(--accent);
+        font-size: 3rem;
+        line-height: 0;
+      }
 
-    h2{
-      font-family:"Space Grotesk",sans-serif;
-      font-weight:600;
-      margin:1.6rem 0 .5rem;
-      font-size:1.55rem;
-    }
+      h2 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        margin: 1.6rem 0 0.5rem;
+        font-size: 1.55rem;
+      }
 
-    /* ───────── links & misc ───────── */
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
+      /* ───────── links & misc ───────── */
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
 
-    .links a{display:inline-flex;align-items:center;gap:.25rem}
-    .links a:not(:first-child)::before{content:"→";color:var(--accent);font-size:.85rem}
+      code {
+        background: #eef1f7;
+        padding: 0 0.28rem;
+        border-radius: 4px;
+        font-size: 0.92rem;
+      }
 
-    code{background:#eef1f7;padding:0 .28rem;border-radius:4px;font-size:.92rem}
+      footer {
+        text-align: center;
+        margin: 3rem 0 2rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
 
-    footer{text-align:center;margin:3rem 0 2rem;color:var(--muted);font-size:.9rem}
+      /* ───────── floating icons ───────── */
+      .math,
+      .crash,
+      .filings {
+        float: right;
+        height: auto;
+        margin: 0 0 1rem 1.5rem;
+        shape-outside: inset(0);
+      }
 
-    /* ───────── floating icons ───────── */
-    .math,.crash,.filings{
-      float:right;
-      height:auto;
-      margin:0 0 1rem 1.5rem;
-      shape-outside:inset(0);
-    }
-
-    @media (max-width:600px){
-      .math,.crash,.filings{width:90px;margin:0 0 .75rem 1rem}
-    }
-  </style>
-</head>
-<body>
-  <div id="wrap">
-
-    <!-- me -->
-    <section>
-      <h1>me</h1>
-      <p>
-        I’m Lev, a Denver‑based engineer who swapped chalk‑dust equations for
-        code when Python seduced me junior year at Ohio State.
-      </p>
-      <p>
+      @media (max-width: 600px) {
+        .math,
+        .crash,
+        .filings {
+          width: 90px;
+          margin: 0 0 0.75rem 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <!-- me -->
+      <section>
+        <h1>me</h1>
+        <p>
+          Hey, I'm Lev. I live in Colorado with my fiancé, where we spend time
+          snowboarding, gravel biking, and exploring the mountains. I’m
+          currently a ML engineer at Honda, where I lead data science and
+          machine learning efforts. I also co-founded an AI-driven startup and
+          studied mathematics at Ohio State.
+        </p>
+        <p>
+          I'm especially interested in Python, Rust, ML systems, and
+          performance-driven dev tools. You can find my personal projects on
+          this page, and more of my open source work on
+          <a href="https://github.com/bnkc" target="_blank">GitHub</a>.
+        </p>
         <img src="assets/math.svg" alt="math icon" class="math" />
-        A quick detour through a driveway‑sealing business saw me automate price
-        quotes (why do data entry twice?). Since then, <strong>typed&nbsp;Python</strong>
-        and <strong>Rust</strong> have been my playground for performance‑first back‑ends.
-      </p>
-      <p>
-        These days at Honda I shepherd 100 million warranty claims through a
-        vector pipeline that spots emerging part failures—work that once took 20
-        analysts and a maze of SQL. Nights and weekends belong to side projects,
-        steep cracks in the Front Range, and progressive‑rock odd‑meters.
-      </p>
-      <p>
-        Code lives on <a href="https://github.com/bnkc" target="_blank">github</a>. Feel free to
-        <a href="mailto:lev@example.com">say hi</a>.
-      </p>
-    </section>
+        <br />
+        <p>
+          If you'd like to get in touch, feel free to send me an
+          <a href="mailto:lev@example.com">email</a>.
+        </p>
+        <br />
+      </section>
 
-    <!-- projects -->
-    <section>
-      <h1>projects</h1>
+      <!-- startups -->
+      <section>
+        <h1>Startups</h1>
 
-      <h2><a href="https://github.com/bnkc/emval" target="_blank">Emval</a></h2>
-      <p>
-        A Rust‑powered email validator with a <em>thin</em> PyO3 shim. Inspired by
-        Pydantic’s all‑Python implementation, I re‑wrote the hot path and saw a
-        <strong>100‑1000× speed‑up</strong>. Fully RFC 5322/6531, Unicode‑aware and soon able
-        to ping MX records. <span class="links"><a href="https://pypi.org/project/emval/">pip install</a></span>
-      </p>
+        <h2>
+          <a href="https://www.matrisk.ai/filings-ai" target="_blank"
+            >Matrisk&nbsp;AI</a
+          >
+        </h2>
+        <p>
+          <img src="assets/filings.svg" alt="filings icon" class="filings" />
+          Co‑founded a tool that lets actuaries interrogate millions of
+          insurance filings (“How has wind‑hail deductibles changed since
+          2015?”) and get source‑linked answers. A RAG pipeline distills ~10 TB
+          of PDFs; users spend
+          <strong>90% less</strong> time scrolling.
+        </p>
 
-      <h2><a href="https://www.matrisk.ai/filings-ai" target="_blank">Filings&nbsp;AI</a></h2>
-      <p>
-        <img src="assets/filings.svg" alt="filings icon" class="filings" />
-        Co‑founded a tool that lets actuaries interrogate millions of insurance
-        filings (“How has wind‑hail deductibles changed since 2015?”) and get
-        source‑linked answers. A RAG pipeline distills 50 TB of PDFs; users spend
-        <strong>90 % less</strong> time scrolling.
-      </p>
+        <h2>
+          <a href="https://www.matrisk.ai/crash-data" target="_blank"
+            >Crash&nbsp;Data&nbsp;API</a
+          >
+        </h2>
+        <p>
+          <img src="assets/crash.svg" alt="crash icon" class="crash" />
+          100 million police reports, 20 years deep, cleaned and piped into
+          hyper‑local risk scores. Carriers hit the API thousands of times per
+          minute to price telematics and garaging risk.
+        </p>
+      </section>
 
-      <h2><a href="https://www.matrisk.ai/crash-data" target="_blank">Crash&nbsp;Data</a></h2>
-      <p>
-        <img src="assets/crash.svg" alt="crash icon" class="crash" />
-        100 million police reports, 20 years deep, cleaned and piped into
-        hyper‑local risk scores. Carriers hit the API thousands of times per
-        minute to price telematics and garaging risk.
-      </p>
+      <!-- projects -->
+      <section>
+        <h1>projects</h1>
+        <h2>
+          <a href="https://github.com/bnkc/emval" target="_blank">Emval</a>
+        </h2>
+        <p>
+          A Rust‑powered email validator with a <em>thin</em> PyO3 shim.
+          Inspired by Pydantic’s all‑Python implementation, I re‑wrote the hot
+          path and saw a <strong>100‑1000× speed‑up</strong>. Fully
+          RFC 5322/6531, Unicode‑aware and soon able to ping MX records.
+          <span class="links"
+            ><a href="https://pypi.org/project/emval/">pip install</a></span
+          >
+        </p>
+        <h2>
+          <a href="https://github.com/bnkc/unpack" target="_blank">Unpack</a>
+        </h2>
+        <p>
+          A Rust CLI that audits Python envs: maps imports → packages, flags
+          bloat and prints disk usage so you can slim Docker images before the
+          next cup of coffee.
+        </p>
+        <h2>
+          <a href="https://github.com/bnkc/handlefinder" target="_blank"
+            >Handlefinder</a
+          >
+        </h2>
+        <p>
+          A fullstack app to search handles across hundreds of social networks.
+          Built with FastAPI, TypeScript, and Node.js. Great for brand checks or
+          OSINT.
+        </p>
+      </section>
 
-      <h2><a href="https://github.com/bnkc/unpack" target="_blank">Unpack</a></h2>
-      <p>
-        A Rust CLI that audits Python envs: maps imports → packages, flags bloat
-        and prints disk usage so you can slim Docker images before the next cup
-        of coffee.
-      </p>
-    </section>
+      <!-- blog -->
+      <section>
+        <h1>blog</h1>
+        <p>
+          Occasional notes on Rust, data pipelines and email arcana. Coming
+          soon.
+        </p>
+      </section>
 
-    <!-- blog -->
-    <section>
-      <h1>blog</h1>
-      <p>Occasional notes on Rust, data pipelines and email arcana. Coming soon.</p>
-    </section>
+      <!-- contact -->
+      <section>
+        <h1>contact</h1>
+        <div
+          class="links contact-links"
+          style="
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            align-items: center;
+          "
+        >
+          <a
+            href="mailto:levostatnigrosh@gmail.com"
+            aria-label="Email"
+            style="display: flex; align-items: center; gap: 0.5rem"
+          >
+            <img src="assets/email.svg" alt="email icon" style="height: 24px" />
+            <span>Email</span>
+          </a>
+          <a
+            href="https://github.com/bnkc"
+            target="_blank"
+            aria-label="GitHub"
+            style="display: flex; align-items: center; gap: 0.5rem"
+          >
+            <img
+              src="assets/github.svg"
+              alt="github icon"
+              style="height: 24px"
+            />
+            <span>GitHub</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ostatnigrosh/"
+            target="_blank"
+            aria-label="LinkedIn"
+            style="display: flex; align-items: center; gap: 0.5rem"
+          >
+            <img
+              src="assets/linkedin.svg"
+              alt="linkedin icon"
+              style="height: 24px"
+            />
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </section>
 
-    <!-- contact -->
-    <section>
-      <h1>contact</h1>
-      <div class="links">
-        <a href="mailto:lev@example.com">email</a>
-        <a href="https://github.com/bnkc" target="_blank">github</a>
-        <a href="https://www.linkedin.com/in/ostatnigrosh/" target="_blank">linkedin</a>
-      </div>
-    </section>
-
-    <footer>© 2025 lev ostatnigrosh</footer>
-  </div>
-</body>
+      <footer>© 2025 lev ostatnigrosh made with ❤️ in Denver</footer>
+    </div>
+  </body>
 </html>
