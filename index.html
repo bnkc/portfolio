@@ -1,93 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lev Ostatnigrosh</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;700&family=Poppins:wght@600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>Lev Ostatnigrosh</h1>
-      <p>ML Engineer @ American Honda · Python / Rust Enthusiast</p>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lev ostatnigrosh</title>
 
-    <main>
-      <section id="about">
-        <h2 class="section-title">About</h2>
-        <div class="about">
-          <img src="assets/lev.jpg" alt="Lev Ostatnigrosh" />
-          <p>
-            I am a Machine Learning &amp; Backend Engineer with 3+ years of professional experience building scalable services in <strong>Python</strong> and <strong>Rust</strong>.
-            I currently work at <strong>American Honda</strong>, where I design custom vector databases and ML‑driven warranty analytics.
-            In my free time I experiment with high‑performance tooling, contribute to open‑source and explore Colorado’s climbing spots.
-          </p>
-        </div>
-      </section>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-      <section id="projects">
-        <h2 class="section-title">Selected Projects</h2>
-        <div class="projects-grid">
-            <div class="card">
-                <h3>emval</h3>
-                <p>Blazingly fast email validator written in Rust with Python bindings—100–1000× faster than traditional validators. Validates syntax per RFC 5322/6531, normalizes addresses, and (coming soon) checks deliverability.</p>
-                <p class="meta">
-                  ⭐ 189 stars · last release v0.1.6 (Dec 5, 2024) · Rust & Python
-                </p>
-                <a href="https://github.com/bnkc/emval" target="_blank" rel="noopener">GitHub ↗</a>
-              </div>
-              <div class="card">
-                <h3>Matrisk Filings AI</h3>
-                <p>Ask any question of public insurance filings and get instant, fully traceable answers—spend 90% less time reading and more time analyzing compliance & competitive intelligence.</p>
-                <p class="meta">
-                  ⚙️ AI • Insurance • Audit trail • Continuous updates
-                </p>
-                <a href="https://www.matrisk.ai/filings-ai" target="_blank" rel="noopener">Website ↗</a>
-              </div>
-              <div class="card">
-                <h3>Matrisk Crash Data</h3>
-                <p>Hyper‑local crash insights: 100 M+ records over 20 years powering telematics & garaging risk scores, plus raw data APIs for fully custom modeling.</p>
-                <p class="meta">
-                  🚗 Geo‑spatial • Telemetrics Risk Score • Bulk API • 85% U.S. premiums covered
-                </p>
-                <a href="https://www.matrisk.ai/crash-data" target="_blank" rel="noopener">Website ↗</a>
-              </div>
-              <div class="card">
-                <h3>unpack</h3>
-                <p>CLI tool to audit your Python dependencies: detects used, unused, and untracked packages, shows disk‐usage by package, and maps import→dependency relationships.</p>
-                <p class="meta">
-                  ⭐ 16 stars · last update Apr 10, 2024 · Rust
-                </p>
-                <a href="https://github.com/bnkc/unpack" target="_blank" rel="noopener">GitHub ↗</a>
-              </div>
-        </div>
-      </section>
+  <style>
+    :root {
+      --bg: #fcfcfd;
+      --fg: #262f40;
+      --accent: #556dbe;     /* mellow steel‑blue */
+      --muted: #6e7a91;
+    }
 
-      <section id="blog">
-        <h2 class="section-title">Latest Posts</h2>
-        <p>Coming soon… (add Markdown files to <code>_posts</code>)</p>
-      </section>
+    *,*::before,*::after{box-sizing:border-box;margin:0}
+    html{scroll-behavior:smooth}
 
-      <section id="contact">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-links">
-          <a class="icon-link" href="mailto:lev@example.com" aria-label="Email">Email</a>
-          <a class="icon-link" href="https://github.com/bnkc" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
-          <a class="icon-link" href="https://www.linkedin.com/in/ostatnigrosh/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
-        </div>
-      </section>
-    </main>
+    body{
+      background:var(--bg);
+      color:var(--fg);
+      font-family:"Inter",system-ui,sans-serif;
+      font-size:18px;
+      line-height:1.8;
+    }
 
-    <footer>© 2025 Lev Ostatnigrosh. Built with ♥ in Colorado.</footer>
-  </body>
+    #wrap{max-width:52rem;margin:0 auto;padding:0 1.2rem}
+
+    /* ───────── headings ───────── */
+    h1{
+      font-family:"Space Grotesk",sans-serif;
+      font-weight:600;
+      margin:3rem 0 1rem;
+      display:flex;align-items:center;gap:.55rem;
+      text-transform:lowercase;
+      font-size:clamp(2.3rem,4.5vw + .5rem,3.1rem);
+    }
+    h1::before{content:"↬";color:var(--accent);font-size:3rem;line-height:0}
+
+    h2{
+      font-family:"Space Grotesk",sans-serif;
+      font-weight:600;
+      margin:1.6rem 0 .5rem;
+      font-size:1.55rem;
+    }
+
+    /* ───────── links & misc ───────── */
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .links a{display:inline-flex;align-items:center;gap:.25rem}
+    .links a:not(:first-child)::before{content:"→";color:var(--accent);font-size:.85rem}
+
+    code{background:#eef1f7;padding:0 .28rem;border-radius:4px;font-size:.92rem}
+
+    footer{text-align:center;margin:3rem 0 2rem;color:var(--muted);font-size:.9rem}
+
+    /* ───────── floating icons ───────── */
+    .math,.crash,.filings{
+      float:right;
+      height:auto;
+      margin:0 0 1rem 1.5rem;
+      shape-outside:inset(0);
+    }
+
+    @media (max-width:600px){
+      .math,.crash,.filings{width:90px;margin:0 0 .75rem 1rem}
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+
+    <!-- me -->
+    <section>
+      <h1>me</h1>
+      <p>
+        I’m Lev, a Denver‑based engineer who swapped chalk‑dust equations for
+        code when Python seduced me junior year at Ohio State.
+      </p>
+      <p>
+        <img src="assets/math.svg" alt="math icon" class="math" />
+        A quick detour through a driveway‑sealing business saw me automate price
+        quotes (why do data entry twice?). Since then, <strong>typed&nbsp;Python</strong>
+        and <strong>Rust</strong> have been my playground for performance‑first back‑ends.
+      </p>
+      <p>
+        These days at Honda I shepherd 100 million warranty claims through a
+        vector pipeline that spots emerging part failures—work that once took 20
+        analysts and a maze of SQL. Nights and weekends belong to side projects,
+        steep cracks in the Front Range, and progressive‑rock odd‑meters.
+      </p>
+      <p>
+        Code lives on <a href="https://github.com/bnkc" target="_blank">github</a>. Feel free to
+        <a href="mailto:lev@example.com">say hi</a>.
+      </p>
+    </section>
+
+    <!-- projects -->
+    <section>
+      <h1>projects</h1>
+
+      <h2><a href="https://github.com/bnkc/emval" target="_blank">Emval</a></h2>
+      <p>
+        A Rust‑powered email validator with a <em>thin</em> PyO3 shim. Inspired by
+        Pydantic’s all‑Python implementation, I re‑wrote the hot path and saw a
+        <strong>100‑1000× speed‑up</strong>. Fully RFC 5322/6531, Unicode‑aware and soon able
+        to ping MX records. <span class="links"><a href="https://pypi.org/project/emval/">pip install</a></span>
+      </p>
+
+      <h2><a href="https://www.matrisk.ai/filings-ai" target="_blank">Filings&nbsp;AI</a></h2>
+      <p>
+        <img src="assets/filings.svg" alt="filings icon" class="filings" />
+        Co‑founded a tool that lets actuaries interrogate millions of insurance
+        filings (“How has wind‑hail deductibles changed since 2015?”) and get
+        source‑linked answers. A RAG pipeline distills 50 TB of PDFs; users spend
+        <strong>90 % less</strong> time scrolling.
+      </p>
+
+      <h2><a href="https://www.matrisk.ai/crash-data" target="_blank">Crash&nbsp;Data</a></h2>
+      <p>
+        <img src="assets/crash.svg" alt="crash icon" class="crash" />
+        100 million police reports, 20 years deep, cleaned and piped into
+        hyper‑local risk scores. Carriers hit the API thousands of times per
+        minute to price telematics and garaging risk.
+      </p>
+
+      <h2><a href="https://github.com/bnkc/unpack" target="_blank">Unpack</a></h2>
+      <p>
+        A Rust CLI that audits Python envs: maps imports → packages, flags bloat
+        and prints disk usage so you can slim Docker images before the next cup
+        of coffee.
+      </p>
+    </section>
+
+    <!-- blog -->
+    <section>
+      <h1>blog</h1>
+      <p>Occasional notes on Rust, data pipelines and email arcana. Coming soon.</p>
+    </section>
+
+    <!-- contact -->
+    <section>
+      <h1>contact</h1>
+      <div class="links">
+        <a href="mailto:lev@example.com">email</a>
+        <a href="https://github.com/bnkc" target="_blank">github</a>
+        <a href="https://www.linkedin.com/in/ostatnigrosh/" target="_blank">linkedin</a>
+      </div>
+    </section>
+
+    <footer>© 2025 lev ostatnigrosh</footer>
+  </div>
+</body>
 </html>
