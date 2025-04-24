@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lev Ostatnigrosh</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Your original styles pulled out of index.html -->
+    <style>
+      :root {
+        --bg: #fcfcfd;
+        --fg: #262f40;
+        --accent: #1e8bd9;
+        --muted: #6e7a91;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 18px;
+        line-height: 1.8;
+      }
+      #wrap {
+        max-width: 52rem;
+        margin: 0 auto;
+        padding: 0 1.2rem;
+      }
+      h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        margin: 3rem 0 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        text-transform: lowercase;
+        font-size: clamp(2.3rem, 4.5vw + 0.5rem, 3.1rem);
+      }
+      h1::before {
+        content: "↬";
+        color: var(--accent);
+        font-size: 3rem;
+        line-height: 0;
+      }
+      h2 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        margin: 1.6rem 0 0.5rem;
+        font-size: 1.55rem;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      code {
+        background: #eef1f7;
+        padding: 0 0.28rem;
+        border-radius: 4px;
+        font-size: 0.92rem;
+      }
+      footer {
+        text-align: center;
+        margin: 3rem 0 2rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .math,
+      .crash,
+      .hex {
+        float: right;
+        height: auto;
+        margin: 0 0 1rem 1.5rem;
+        shape-outside: inset(0);
+      }
+      @media (max-width: 600px) {
+        .math,
+        .crash,
+        .hex {
+          width: 90px;
+          margin: 0 0 0.75rem 1rem;
+        }
+      }
+
+      /* ───────── blog helpers ───────── */
+      article img {
+        max-width: 100%;
+        border-radius: 8px;
+        display: block;
+        margin: 1.2rem auto;
+      }
+
+      article hr {
+        border: none;
+        border-top: 1px solid #e4e7ee;
+        margin: 2.5rem 0;
+      }
+
+      article table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.9rem;
+      }
+      article th,
+      article td {
+        border: 1px solid #e4e7ee;
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      article th {
+        background: #f7f8fa;
+        font-weight: 600;
+      }
+      article {
+        padding-bottom: 3rem;
+      }
+
+      article blockquote {
+        margin: 1.5rem 0;
+        padding: 0.25rem 1rem;
+        border-left: 4px solid var(--accent);
+        background: #f7faff;
+        color: var(--fg);
+      }
+
+      article h1 {
+        font-size: 2rem;
+        margin-top: 2.5rem;
+      }
+      article h2 {
+        font-size: 1.35rem;
+        margin-top: 2rem;
+      }
+      article h3 {
+        font-size: 1.15rem;
+        margin-top: 1.6rem;
+      }
+
+      /* ───────── avatar ───────── */
+      .avatar {
+        display: block;
+        margin: 0 auto 2.2rem;
+        margin-top: 2.2rem;
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+      }
+
+      @media (min-width: 600px) {
+        .avatar {
+          width: 170px;
+          height: 170px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="wrap"><!-- hero / avatar -->
+<img
+  src="/assets/landing/selfie.png"
+  alt="Lev Ostatnigrosh"
+  class="avatar"
+/>
+
+<!-- me -->
+<section>
+  <h1>me</h1>
+  <p>
+    Hey, I'm Lev. I live in Colorado with my fiancé, where we spend time
+    snowboarding, gravel biking, and exploring the mountains. I’m currently a ML
+    engineer at Honda, where I lead data science and machine learning efforts. I
+    also co-founded an AI-driven startup and studied mathematics at Ohio State.
+  </p>
+  <p>
+    I'm especially interested in Python, Rust, ML systems, and
+    performance-driven dev tools. You can find my personal projects on this
+    page, and more of my open source work on
+    <a href="https://github.com/bnkc" target="_blank">GitHub</a>.
+  </p>
+  <img src="assets/landing/math.svg" alt="math icon" class="math" />
+  <br />
+  <p>
+    If you'd like to get in touch, feel free to send me an
+    <a href="mailto:lev@example.com">email</a>.
+  </p>
+  <br />
+</section>
+
+<!-- startups -->
+<section>
+  <h1>Startups</h1>
+
+  <h2>
+    Matrisk AI&nbsp;
+    <a href="https://www.matrisk.ai/filings-ai" target="_blank">matrisk.ai</a>
+  </h2>
+  <p>
+    Co‑founded a tool that lets actuaries interrogate millions of insurance
+    filings (“How has wind‑hail deductibles changed since 2015?”) and get
+    source‑linked answers. A RAG pipeline distilling
+    <strong>~10TB</strong> of PDFs into an AI‑powered insurance search engine.
+  </p>
+
+  <h2>
+    <img src="assets/landing/crash.svg" alt="crash icon" class="crash" />
+    Crash Data API&nbsp;
+    <a href="https://www.matrisk.ai/crash-data" target="_blank"
+      >matrisk.ai/crash-data</a
+    >
+  </h2>
+  <p>
+    100 million police reports, 20 years deep, cleaned and piped into
+    hyper‑local risk scores. Carriers hit the API thousands of times per minute
+    to price telematics and garaging risk.
+  </p>
+</section>
+
+<!-- projects -->
+<section>
+  <h1>projects</h1>
+  <h2>
+    Emval&nbsp;
+    <a href="https://github.com/bnkc/emval" target="_blank">/emval</a>
+  </h2>
+  <p>
+    A Rust‑powered email validator with a <em>thin</em> PyO3 shim. Inspired by
+    Pydantic’s all Python implementation, I re‑wrote the hot path and saw a
+    <strong>100‑1000× speed‑up</strong>. Fully RFC 5322/6531 compliant,
+    Unicode‑aware and soon able to ping MX records.
+  </p>
+  <h2>
+    Unpack&nbsp;
+    <a href="https://github.com/bnkc/unpack" target="_blank">/unpack</a>
+  </h2>
+  <p>
+    A Rust CLI that audits Python environments, mapping imports → packages,
+    flags bloat and prints disk usage so you can slim Docker images before the
+    next cup of coffee.
+  </p>
+  <h2>
+    <img src="assets/landing/hex.svg" alt="hex icon" class="hex" />
+    Handlefinder&nbsp;
+    <a href="https://github.com/bnkc/handlefinder" target="_blank"
+      >/handlefinder</a
+    >
+  </h2>
+  <p>
+    A fullstack app to search handles across hundreds of social networks. Built
+    with FastAPI, TypeScript, and Node.js. Great for brand checks or OSINT.
+  </p>
+</section>
+
+<!-- blog -->
+<section>
+  <h1>blogs</h1>
+
+   
+  <article style="margin-bottom: 2rem">
+    <h2><a href="/blog/we-found-insurance-fraud-in-our-crash-data/">We Found Insurance Fraud in Our Crash Data</a></h2>
+    <p style="color: var(--muted); font-size: 0.9rem">
+      April 22, 2025
+    </p>
+    <p><p>When we set out to build geospatial risk scores for vehicle crashes at Matrisk AI, we never expected that a side by side look at  <a href="https://en.wikipedia.org/wiki/Vehicle_identification_number">Vehicle Identification Numbers</a> and crash timelines would hint at <em>possible insurance fraud</em>. But data sometimes surprises you. Below, I’ll walk through how we stumbled upon this discovery, what we found, and why it might matter for anyone insuring vehicles.</p>
+</p>
+  </article>
+  
+  <p><a href="/blog/">See all posts →</a></p>
+  
+</section>
+
+<!-- contact -->
+<section>
+  <h1>contact</h1>
+  <div
+    class="links contact-links"
+    style="
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      align-items: center;
+    "
+  >
+    <a
+      href="mailto:levostatnigrosh@gmail.com"
+      aria-label="Email"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
+      <img
+        src="assets/landing/email.svg"
+        alt="email icon"
+        style="height: 24px"
+      />
+      <span>Email</span>
+    </a>
+    <a
+      href="https://github.com/bnkc"
+      target="_blank"
+      aria-label="GitHub"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
+      <img
+        src="assets/landing/github.svg"
+        alt="github icon"
+        style="height: 24px"
+      />
+      <span>GitHub</span>
+    </a>
+    <a
+      href="https://www.linkedin.com/in/ostatnigrosh/"
+      target="_blank"
+      aria-label="LinkedIn"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
+      <img
+        src="assets/landing/linkedin.svg"
+        alt="linkedin icon"
+        style="height: 24px"
+      />
+      <span>LinkedIn</span>
+    </a>
+  </div>
+</section>
+
+<footer>© 2025 made with ❤️ by Lev</footer>
+</div>
+  </body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.title | default: site.title }}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Your original styles pulled out of index.html -->
+    <style>
+      :root {
+        --bg: #fcfcfd;
+        --fg: #262f40;
+        --accent: #1e8bd9;
+        --muted: #6e7a91;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 18px;
+        line-height: 1.8;
+      }
+      #wrap {
+        max-width: 52rem;
+        margin: 0 auto;
+        padding: 0 1.2rem;
+      }
+      h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        margin: 3rem 0 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        text-transform: lowercase;
+        font-size: clamp(2.3rem, 4.5vw + 0.5rem, 3.1rem);
+      }
+      h1::before {
+        content: "↬";
+        color: var(--accent);
+        font-size: 3rem;
+        line-height: 0;
+      }
+      h2 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        margin: 1.6rem 0 0.5rem;
+        font-size: 1.55rem;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      code {
+        background: #eef1f7;
+        padding: 0 0.28rem;
+        border-radius: 4px;
+        font-size: 0.92rem;
+      }
+      footer {
+        text-align: center;
+        margin: 3rem 0 2rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .math,
+      .crash,
+      .hex {
+        float: right;
+        height: auto;
+        margin: 0 0 1rem 1.5rem;
+        shape-outside: inset(0);
+      }
+      @media (max-width: 600px) {
+        .math,
+        .crash,
+        .hex {
+          width: 90px;
+          margin: 0 0 0.75rem 1rem;
+        }
+      }
+
+      /* ───────── blog helpers ───────── */
+      article img {
+        max-width: 100%;
+        border-radius: 8px;
+        display: block;
+        margin: 1.2rem auto;
+      }
+
+      article hr {
+        border: none;
+        border-top: 1px solid #e4e7ee;
+        margin: 2.5rem 0;
+      }
+
+      article table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.9rem;
+      }
+      article th,
+      article td {
+        border: 1px solid #e4e7ee;
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      article th {
+        background: #f7f8fa;
+        font-weight: 600;
+      }
+      article {
+        padding-bottom: 3rem;
+      }
+
+      article blockquote {
+        margin: 1.5rem 0;
+        padding: 0.25rem 1rem;
+        border-left: 4px solid var(--accent);
+        background: #f7faff;
+        color: var(--fg);
+      }
+
+      article h1 {
+        font-size: 2rem;
+        margin-top: 2.5rem;
+      }
+      article h2 {
+        font-size: 1.35rem;
+        margin-top: 2rem;
+      }
+      article h3 {
+        font-size: 1.15rem;
+        margin-top: 1.6rem;
+      }
+
+      /* ───────── avatar ───────── */
+      .avatar {
+        display: block;
+        margin: 0 auto 2.2rem;
+        margin-top: 2.2rem;
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+      }
+
+      @media (min-width: 600px) {
+        .avatar {
+          width: 170px;
+          height: 170px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="wrap">{{ content }}</div>
+  </body>
+</html>

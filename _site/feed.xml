@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-23T23:16:09-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Lev Ostatnigrosh</title><subtitle>Personal site &amp; blog</subtitle><entry><title type="html">We Found Insurance Fraud in Our Crash Data</title><link href="http://localhost:4000/blog/we-found-insurance-fraud-in-our-crash-data/" rel="alternate" type="text/html" title="We Found Insurance Fraud in Our Crash Data" /><published>2025-04-22T00:00:00-06:00</published><updated>2025-04-22T00:00:00-06:00</updated><id>http://localhost:4000/blog/we-found-insurance-fraud-in-our-crash-data</id><content type="html" xml:base="http://localhost:4000/blog/we-found-insurance-fraud-in-our-crash-data/"><![CDATA[<p>When we set out to build geospatial risk scores for vehicle crashes at Matrisk AI, we never expected that a side by side look at  <a href="https://en.wikipedia.org/wiki/Vehicle_identification_number">Vehicle Identification Numbers</a> and crash timelines would hint at <em>possible insurance fraud</em>. But data sometimes surprises you. Below, I’ll walk through how we stumbled upon this discovery, what we found, and why it might matter for anyone insuring vehicles.</p>
+
+<hr />
+
+<h2 id="a-curious-hunch">A curious hunch</h2>
+
+<p>Our main focus has been risk scores: Where are crashes most frequent? What are the road conditions? Which stretches of highway see severe outcomes? Yet, a handful of states in our dataset disclose VINs for each crash, and that simple addition changed everything.</p>
+
+<p><strong>Why VINs are a big deal</strong></p>
+
+<ul>
+  <li>They let us track <em>exactly</em> which vehicle is in multiple crashes, not just a vague “car in two accidents.”</li>
+  <li>They allow us to approximate when that vehicle might have switched insurance carriers.</li>
+  <li>They open the door to spotting suspicious patterns (like the same VIN appearing in an unreasonable cluster of accidents).</li>
+</ul>
+
+<p>I still remember the moment this hit home. Some years ago, a police officer casually told me, “You should get a dashcam, insurance fraud is common around here.” His offhand comment stuck with me, but life moved on. Fast forward to our modern data pipeline, and suddenly those words didn’t seem so casual after all.</p>
+
+<hr />
+
+<h2 id="linking-crashes-together">Linking crashes together</h2>
+
+<p>After filtering out invalid VINs, we narrowed the dataset to roughly <em>~15 million crashes</em>. <em>(We also removed all drug and alcohol related crashes, since it’s unlikely someone committing insurance fraud would be under the influence.)</em> From there, our pipeline:</p>
+
+<ol>
+  <li>Counts how often the same VIN appears in a short interval (e.g., 6–12 months).</li>
+  <li>Flags overlapping or “back to back” insurance coverage for the same VIN.</li>
+  <li>Identifies repeated patterns of single vehicle collisions, nighttime crashes, and reported injuries.</li>
+</ol>
+
+<p>We’re not conducting a law enforcement sting, but we do want to spot anomalies that might warrant a closer look.</p>
+
+<p><img src="/assets/blog/insurance_fraud/vin_distribution.png" alt="While most VINs have ≤2 crashes, a small subset has ≥5 within 12 months" />
+<em>While most VINs have just ≤2 crashes, a subset had ≥5 crashes within a 12-month rolling window.</em></p>
+
+<hr />
+
+<h2 id="suspicious-indicators">Suspicious indicators</h2>
+
+<p>Industry white papers have pointed out the same red flags time and again. For example, the <a href="https://www.fbi.gov/news/stories/staged-accident-ring">FBI highlighted</a> a ring in Connecticut where one group of vehicles participated in over 50 staged accidents in just a few years. We’ve found similar signals:</p>
+
+<ul>
+  <li><strong>Multiple crashes:</strong> <em>≥2</em> accidents involving the same VIN in <em>≤6</em> months can raise a red flag.</li>
+  <li><strong>Multiple insurers:</strong> Switching insurers <em>A → B → C</em>, all in the span of <em>≤6</em> months suggests potential “double dipping.”</li>
+  <li><strong>Nighttime, no witness collisions:</strong> Late night single vehicle accidents with no witnesses are a recurring hallmark of <a href="https://www.insure.com/car-insurance/suspicious-loss-indicators.html#:~:text=,or%20replacement%20of%20covered%20property">staged accidents</a>.</li>
+  <li><strong>Injury Claims:</strong> Some fraud rings inflate payouts by reporting injuries.</li>
+  <li><strong>Single Vehicle Collisions:</strong> Coordinating a crash is simpler when you only involve one vehicle (though multi-vehicle rings exist, too).</li>
+</ul>
+
+<p>We combined these factors into a weighted <a href="https://www.sas.com/content/dam/SAS/bp_de/doc/whitepaper1/ri-wp-combating-insurance-claims-fraud-1925585.pdf#:~:text=damage%20for%20the%20nature%20of,flagged%20if"><em>propensity score</em></a> to prioritize which VINs were worth a closer inspection. It’s not a definitive fraud meter, just a helpful starting point.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>VIN</strong></th>
+      <th><strong>Max Crashes (6m)</strong></th>
+      <th><strong>Max Insurers (6m)</strong></th>
+      <th><strong>Max Injuries (12m)</strong></th>
+      <th><strong>Late Night Collisions (12m)</strong></th>
+      <th><strong>Single-Vehicle Crashes (12m)</strong></th>
+      <th><strong>Propensity Score</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>VIN1</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
+      <td>7.6</td>
+    </tr>
+    <tr>
+      <td>VIN2</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <td>VIN3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <td>VIN4</td>
+      <td>3</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>3</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <td>VIN5</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>6.5</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="insurance-switching">Insurance switching</h2>
+
+<p>Public crash data typically doesn’t provide official coverage start/end dates. As a workaround, we inferred coverage intervals based on the first and last incident listing a particular insurer for a VIN. If two or more such intervals overlapped (or happened back to back within days), we flagged it.</p>
+
+<p>It’s not ironclad evidence of fraud, but seeing multiple carriers handle the same VIN in a tight window definitely raised some eyebrows.</p>
+
+<p><img src="/assets/blog/insurance_fraud/insurance_swapping.png" alt="Overlapping insurance" />
+<em>See the overlap? Frequent insurance switching and coverage starting just days before a crash seems almost premeditated.</em></p>
+
+<hr />
+
+<h2 id="a-deeper-look">A deeper look</h2>
+
+<p><strong>VIN1</strong> caught our eye, so we stepped through the collision history:</p>
+
+<ol>
+  <li><strong>Short intervals between reported crashes</strong>
+    <ul>
+      <li>2018-05-20 (late night collision, property damage, single vehicle)</li>
+      <li>2018-06-30 (late night again, minor injury, single vehicle)</li>
+      <li>2018-10-10 (early morning, minor injury, single vehicle)</li>
+    </ul>
+  </li>
+  <li><strong>Insurance switching</strong>
+    <ul>
+      <li>Allstate covered the first incident. Progressive coverage began just before the first crash and ended after the second crash, at which point State Farm took over.</li>
+    </ul>
+  </li>
+  <li><strong>Suspicious environments</strong>
+    <ul>
+      <li>The collisions happened at times and locations with low traffic and no eyewitnesses.</li>
+    </ul>
+  </li>
+  <li><strong>Single vehicle collisions</strong>
+    <ul>
+      <li>Each crash was conveniently a single vehicle collision (phantom deer)</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Does this prove fraud? Absolutely not. It might be a string of bad luck, or a driver who’s genuinely error prone. But if I were in claims management, I’d be curious to dig further.</p>
+
+<hr />
+
+<h2 id="why-this-matters">Why this matters</h2>
+
+<p>Fraud is a tricky subject. By some estimates, fraudulent claims cost the industry <a href="https://www.conroysimberg.com/blog/insurance-fraud-costs-the-u-s-308-billion-annually/">billions of dollars each year</a>. We think there’s value in showing how simple VIN analysis, layered with location and insurer data, can highlight <em>“risky”</em> patterns early on.</p>
+
+<ul>
+  <li>For insurers and fleet managers: these insights could guide how you allocate resources to Special Investigations Units (SIUs).</li>
+  <li>For risk managers: it’s a reminder that <em>where</em> (and <em>when</em>) an accident happens can be as telling as the crash details themselves.</li>
+  <li>For us: it’s simply a fascinating look into how raw data can surface unexpected truths.</li>
+</ul>
+
+<p><img src="/assets/blog/insurance_fraud/map.png" alt="Crash Map" />
+<em>Note: All vehicle and insurance details are <strong>anonymized</strong> for illustration.</em></p>
+
+<hr />
+
+<h3 id="footnotes">Footnotes</h3>
+
+<p>If you’re curious about how we generate our risk scores—or if you just want to compare notes—feel free to <a href="https://www.matrisk.ai/contact?product=crash-data-api">reach out to our team</a>. We’d love to hear your thoughts.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[…]]></summary></entry></feed>

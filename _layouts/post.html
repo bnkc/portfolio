@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<article>
+  <header style="margin-bottom: 2rem">
+    <h1>{{ page.title }}</h1>
+    <p style="color: var(--muted); font-size: 0.9rem">
+      {{ page.date | date: "%B %-d, %Y" }}
+    </p>
+  </header>
+
+  {{ content }}
+</article>

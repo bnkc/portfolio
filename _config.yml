@@ -1,0 +1,8 @@
+title: Lev Ostatnigrosh
+description: Personal site & blog
+url: "https://www.levs.fyi"
+baseurl: ""
+permalink: /blog/:title/
+
+plugins:
+  - jekyll-feed
