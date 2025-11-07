@@ -4,5 +4,8 @@ url: "https://www.levs.fyi"
 baseurl: ""
 permalink: /blog/:title/
 
+markdown: kramdown
+highlighter: rouge
+
 plugins:
   - jekyll-feed

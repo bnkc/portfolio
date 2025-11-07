@@ -3,7 +3,10 @@ layout: default
 ---
 
 <article>
-  <header style="margin-bottom: 2rem">
+  <header style="margin-bottom: 2rem; position: relative">
+    <a href="/" class="back-button" aria-label="Back to home">
+      ←
+    </a>
     <h1>{{ page.title }}</h1>
     <p style="color: var(--muted); font-size: 0.9rem">
       {{ page.date | date: "%B %-d, %Y" }}
@@ -12,3 +15,58 @@ layout: default
 
   {{ content }}
 </article>
+
+<!-- contact -->
+<section>
+  <h1>contact</h1>
+  <div
+    class="links contact-links"
+    style="
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      align-items: center;
+    "
+  >
+    <a
+      href="mailto:levostatnigrosh@gmail.com"
+      aria-label="Email"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
+      <img
+        src="{{ 'assets/landing/email.svg' | relative_url }}"
+        alt="email icon"
+        style="height: 24px"
+      />
+      <span>Email</span>
+    </a>
+    <a
+      href="https://github.com/bnkc"
+      target="_blank"
+      aria-label="GitHub"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
+      <img
+        src="{{ 'assets/landing/github.svg' | relative_url }}"
+        alt="github icon"
+        style="height: 24px"
+      />
+      <span>GitHub</span>
+    </a>
+    <a
+      href="https://www.linkedin.com/in/ostatnigrosh/"
+      target="_blank"
+      aria-label="LinkedIn"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
+      <img
+        src="{{ 'assets/landing/linkedin.svg' | relative_url }}"
+        alt="linkedin icon"
+        style="height: 24px"
+      />
+      <span>LinkedIn</span>
+    </a>
+  </div>
+</section>
+
+<footer>© 2025 made with ❤️ by Lev</footer>

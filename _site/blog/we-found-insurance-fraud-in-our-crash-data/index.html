@@ -77,6 +77,62 @@
         border-radius: 4px;
         font-size: 0.92rem;
       }
+      pre {
+        background: #f7f8fa;
+        color: #37352f;
+        padding: 1.2rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        line-height: 1.6;
+        font-size: 0.88rem;
+      }
+      pre code {
+        background: none;
+        padding: 0;
+        color: inherit;
+        font-size: 0.88rem;
+      }
+
+      /* SQL Syntax Highlighting - Notion-style */
+      .highlight .k,    /* Keywords */
+      .highlight .kd,   /* Keyword Declaration */
+      .highlight .kt,   /* Keyword Type */
+      .highlight .kc,   /* Keyword Constant */
+      .highlight .kn,   /* Keyword Namespace */
+      .highlight .kp,   /* Keyword Pseudo */
+      .highlight .kr {  /* Keyword Reserved */
+        color: #0b6fcc;
+        font-weight: 500;
+      }
+      .highlight .s,    /* String */
+      .highlight .s1,   /* String Single */
+      .highlight .s2,   /* String Double */
+      .highlight .se,   /* String Escape */
+      .highlight .sh {  /* String Heredoc */
+        color: #15a553;
+      }
+      .highlight .o,    /* Operator */
+      .highlight .ow {  /* Operator Word */
+        color: #d97706;
+        font-weight: 500;
+      }
+      .highlight .n,    /* Name */
+      .highlight .nv,   /* Name Variable */
+      .highlight .nb {  /* Name Builtin */
+        color: #37352f;
+      }
+      .highlight .m,    /* Number */
+      .highlight .mi,   /* Number Integer */
+      .highlight .mf {  /* Number Float */
+        color: #d97706;
+      }
+      .highlight .c,    /* Comment */
+      .highlight .cm,   /* Comment Multiline */
+      .highlight .c1 {  /* Comment Single */
+        color: #898989;
+        font-style: italic;
+      }
       footer {
         text-align: center;
         margin: 3rem 0 2rem;
@@ -134,6 +190,10 @@
         padding-bottom: 3rem;
       }
 
+      article p {
+        margin: 1.2rem 0;
+      }
+
       article blockquote {
         margin: 1.5rem 0;
         padding: 0.25rem 1rem;
@@ -145,6 +205,10 @@
       article h1 {
         font-size: 2rem;
         margin-top: 2.5rem;
+        text-transform: none;
+      }
+      article h1::before {
+        content: none;
       }
       article h2 {
         font-size: 1.35rem;
@@ -172,12 +236,46 @@
           height: 170px;
         }
       }
+
+      /* ───────── back button ───────── */
+      .back-button {
+        position: absolute;
+        left: -80px;
+        top: 1.2rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: #f7f8fa;
+        border-radius: 50%;
+        color: var(--fg);
+        text-decoration: none;
+        font-size: 1.5rem;
+        transition: background 0.2s ease;
+      }
+      .back-button:hover {
+        background: #e4e7ee;
+        text-decoration: none;
+      }
+
+      /* Adjust back button on mobile */
+      @media (max-width: 768px) {
+        .back-button {
+          position: static;
+          margin-bottom: 0.75rem;
+          margin-top: 0.5rem;
+        }
+      }
     </style>
   </head>
 
   <body>
     <div id="wrap"><article>
-  <header style="margin-bottom: 2rem">
+  <header style="margin-bottom: 2rem; position: relative">
+    <a href="/" class="back-button" aria-label="Back to home">
+      ←
+    </a>
     <h1>We Found Insurance Fraud in Our Crash Data</h1>
     <p style="color: var(--muted); font-size: 0.9rem">
       April 22, 2025
@@ -363,6 +461,61 @@
 
 
 </article>
+
+<!-- contact -->
+<section>
+  <h1>contact</h1>
+  <div
+    class="links contact-links"
+    style="
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      align-items: center;
+    "
+  >
+    <a
+      href="mailto:levostatnigrosh@gmail.com"
+      aria-label="Email"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
+      <img
+        src="/assets/landing/email.svg"
+        alt="email icon"
+        style="height: 24px"
+      />
+      <span>Email</span>
+    </a>
+    <a
+      href="https://github.com/bnkc"
+      target="_blank"
+      aria-label="GitHub"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
+      <img
+        src="/assets/landing/github.svg"
+        alt="github icon"
+        style="height: 24px"
+      />
+      <span>GitHub</span>
+    </a>
+    <a
+      href="https://www.linkedin.com/in/ostatnigrosh/"
+      target="_blank"
+      aria-label="LinkedIn"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
+      <img
+        src="/assets/landing/linkedin.svg"
+        alt="linkedin icon"
+        style="height: 24px"
+      />
+      <span>LinkedIn</span>
+    </a>
+  </div>
+</section>
+
+<footer>© 2025 made with ❤️ by Lev</footer>
 </div>
   </body>
 </html>

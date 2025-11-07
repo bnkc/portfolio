@@ -1,4 +1,288 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-11-07T16:44:45-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Lev Ostatnigrosh</title><subtitle>Personal site &amp; blog</subtitle><entry><title type="html">Prompting vs. Supervised Learning: Warranty Classification at a Major Automaker</title><link href="http://localhost:4000/blog/prompting-vs-supervised-learning-warranty-classification/" rel="alternate" type="text/html" title="Prompting vs. Supervised Learning: Warranty Classification at a Major Automaker" /><published>2025-11-07T00:00:00-05:00</published><updated>2025-11-07T00:00:00-05:00</updated><id>http://localhost:4000/blog/prompting-vs-supervised-learning-warranty-classification</id><content type="html" xml:base="http://localhost:4000/blog/prompting-vs-supervised-learning-warranty-classification/"><![CDATA[<p>Recalls at major automakers cost hundreds of millions of dollars a year. It’s a huge issue. To mitigate it, one company created an analytics department solely focused on categorizing warranty claims into actionable problems.</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompting vs. Supervised Learning: Warranty Classification at a Major Automaker</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Your original styles pulled out of index.html -->
+    <style>
+      :root {
+        --bg: #fcfcfd;
+        --fg: #262f40;
+        --accent: #1e8bd9;
+        --muted: #6e7a91;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 18px;
+        line-height: 1.8;
+      }
+      #wrap {
+        max-width: 52rem;
+        margin: 0 auto;
+        padding: 0 1.2rem;
+      }
+      h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        margin: 3rem 0 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        text-transform: lowercase;
+        font-size: clamp(2.3rem, 4.5vw + 0.5rem, 3.1rem);
+      }
+      h1::before {
+        content: "↬";
+        color: var(--accent);
+        font-size: 3rem;
+        line-height: 0;
+      }
+      h2 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        margin: 1.6rem 0 0.5rem;
+        font-size: 1.55rem;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      code {
+        background: #eef1f7;
+        padding: 0 0.28rem;
+        border-radius: 4px;
+        font-size: 0.92rem;
+      }
+      pre {
+        background: #f7f8fa;
+        color: #37352f;
+        padding: 1.2rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        line-height: 1.6;
+        font-size: 0.88rem;
+      }
+      pre code {
+        background: none;
+        padding: 0;
+        color: inherit;
+        font-size: 0.88rem;
+      }
+
+      /* SQL Syntax Highlighting - Notion-style */
+      .highlight .k,    /* Keywords */
+      .highlight .kd,   /* Keyword Declaration */
+      .highlight .kt,   /* Keyword Type */
+      .highlight .kc,   /* Keyword Constant */
+      .highlight .kn,   /* Keyword Namespace */
+      .highlight .kp,   /* Keyword Pseudo */
+      .highlight .kr {  /* Keyword Reserved */
+        color: #0b6fcc;
+        font-weight: 500;
+      }
+      .highlight .s,    /* String */
+      .highlight .s1,   /* String Single */
+      .highlight .s2,   /* String Double */
+      .highlight .se,   /* String Escape */
+      .highlight .sh {  /* String Heredoc */
+        color: #15a553;
+      }
+      .highlight .o,    /* Operator */
+      .highlight .ow {  /* Operator Word */
+        color: #d97706;
+        font-weight: 500;
+      }
+      .highlight .n,    /* Name */
+      .highlight .nv,   /* Name Variable */
+      .highlight .nb {  /* Name Builtin */
+        color: #37352f;
+      }
+      .highlight .m,    /* Number */
+      .highlight .mi,   /* Number Integer */
+      .highlight .mf {  /* Number Float */
+        color: #d97706;
+      }
+      .highlight .c,    /* Comment */
+      .highlight .cm,   /* Comment Multiline */
+      .highlight .c1 {  /* Comment Single */
+        color: #898989;
+        font-style: italic;
+      }
+      footer {
+        text-align: center;
+        margin: 3rem 0 2rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .math,
+      .crash,
+      .hex {
+        float: right;
+        height: auto;
+        margin: 0 0 1rem 1.5rem;
+        shape-outside: inset(0);
+      }
+      @media (max-width: 600px) {
+        .math,
+        .crash,
+        .hex {
+          width: 90px;
+          margin: 0 0 0.75rem 1rem;
+        }
+      }
+
+      /* ───────── blog helpers ───────── */
+      article img {
+        max-width: 100%;
+        border-radius: 8px;
+        display: block;
+        margin: 1.2rem auto;
+      }
+
+      article hr {
+        border: none;
+        border-top: 1px solid #e4e7ee;
+        margin: 2.5rem 0;
+      }
+
+      article table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.9rem;
+      }
+      article th,
+      article td {
+        border: 1px solid #e4e7ee;
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+      article th {
+        background: #f7f8fa;
+        font-weight: 600;
+      }
+      article {
+        padding-bottom: 3rem;
+      }
+
+      article p {
+        margin: 1.2rem 0;
+      }
+
+      article blockquote {
+        margin: 1.5rem 0;
+        padding: 0.25rem 1rem;
+        border-left: 4px solid var(--accent);
+        background: #f7faff;
+        color: var(--fg);
+      }
+
+      article h1 {
+        font-size: 2rem;
+        margin-top: 2.5rem;
+        text-transform: none;
+      }
+      article h1::before {
+        content: none;
+      }
+      article h2 {
+        font-size: 1.35rem;
+        margin-top: 2rem;
+      }
+      article h3 {
+        font-size: 1.15rem;
+        margin-top: 1.6rem;
+      }
+
+      /* ───────── avatar ───────── */
+      .avatar {
+        display: block;
+        margin: 0 auto 2.2rem;
+        margin-top: 2.2rem;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      @media (min-width: 600px) {
+        .avatar {
+          width: 170px;
+          height: 170px;
+        }
+      }
+
+      /* ───────── back button ───────── */
+      .back-button {
+        position: absolute;
+        left: -80px;
+        top: 1.2rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: #f7f8fa;
+        border-radius: 50%;
+        color: var(--fg);
+        text-decoration: none;
+        font-size: 1.5rem;
+        transition: background 0.2s ease;
+      }
+      .back-button:hover {
+        background: #e4e7ee;
+        text-decoration: none;
+      }
+
+      /* Adjust back button on mobile */
+      @media (max-width: 768px) {
+        .back-button {
+          position: static;
+          margin-bottom: 0.75rem;
+          margin-top: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="wrap"><article>
+  <header style="margin-bottom: 2rem; position: relative">
+    <a href="/" class="back-button" aria-label="Back to home">
+      ←
+    </a>
+    <h1>Prompting vs. Supervised Learning: Warranty Classification at a Major Automaker</h1>
+    <p style="color: var(--muted); font-size: 0.9rem">
+      November 7, 2025
+    </p>
+  </header>
+
+  <p>Recalls at major automakers cost hundreds of millions of dollars a year. It’s a huge issue. To mitigate it, one company created an analytics department solely focused on categorizing warranty claims into actionable problems.</p>
 
 <p>For decades, this team has relied on SQL queries to classify warranty data. But vehicles—and the language used to describe them—have evolved. SQL struggles with semantics, negations, and contextual nuance. Here’s a fictional example of a claim we might see in the wild:</p>
 
@@ -156,179 +440,64 @@
 
 <p>[3] Prompt by prompt progression</p>
 
-<p><img src="/assets/blog/warranty_classification/prompts.png" alt="Chart showing prompt improvement progression" /></p>]]></content><author><name></name></author><summary type="html"><![CDATA[How we matched years of supervised learning work with 6 rounds of prompt engineering]]></summary></entry><entry><title type="html">We Found Insurance Fraud in Our Crash Data</title><link href="http://localhost:4000/blog/we-found-insurance-fraud-in-our-crash-data/" rel="alternate" type="text/html" title="We Found Insurance Fraud in Our Crash Data" /><published>2025-04-22T00:00:00-04:00</published><updated>2025-04-22T00:00:00-04:00</updated><id>http://localhost:4000/blog/we-found-insurance-fraud-in-our-crash-data</id><content type="html" xml:base="http://localhost:4000/blog/we-found-insurance-fraud-in-our-crash-data/"><![CDATA[<p>When we set out to build geospatial risk scores for vehicle crashes at Matrisk AI, we never expected that a side by side look at  <a href="https://en.wikipedia.org/wiki/Vehicle_identification_number">Vehicle Identification Numbers</a> and crash timelines would hint at <em>possible insurance fraud</em>. But data sometimes surprises you. Below, I’ll walk through how we stumbled upon this discovery, what we found, and why it might matter for anyone insuring vehicles.</p>
+<p><img src="/assets/blog/warranty_classification/prompts.png" alt="Chart showing prompt improvement progression" /></p>
 
-<hr />
+</article>
 
-<h2 id="a-curious-hunch">A curious hunch</h2>
+<!-- contact -->
+<section>
+  <h1>contact</h1>
+  <div
+    class="links contact-links"
+    style="
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      align-items: center;
+    "
+  >
+    <a
+      href="mailto:levostatnigrosh@gmail.com"
+      aria-label="Email"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
+      <img
+        src="/assets/landing/email.svg"
+        alt="email icon"
+        style="height: 24px"
+      />
+      <span>Email</span>
+    </a>
+    <a
+      href="https://github.com/bnkc"
+      target="_blank"
+      aria-label="GitHub"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
+      <img
+        src="/assets/landing/github.svg"
+        alt="github icon"
+        style="height: 24px"
+      />
+      <span>GitHub</span>
+    </a>
+    <a
+      href="https://www.linkedin.com/in/ostatnigrosh/"
+      target="_blank"
+      aria-label="LinkedIn"
+      style="display: flex; align-items: center; gap: 0.5rem"
+    >
+      <img
+        src="/assets/landing/linkedin.svg"
+        alt="linkedin icon"
+        style="height: 24px"
+      />
+      <span>LinkedIn</span>
+    </a>
+  </div>
+</section>
 
-<p>Our main focus has been risk scores: Where are crashes most frequent? What are the road conditions? Which stretches of highway see severe outcomes? Yet, a handful of states in our dataset disclose VINs for each crash, and that simple addition changed everything.</p>
-
-<p><strong>Why VINs are a big deal</strong></p>
-
-<ul>
-  <li>They let us track <em>exactly</em> which vehicle is in multiple crashes, not just a vague “car in two accidents.”</li>
-  <li>They allow us to approximate when that vehicle might have switched insurance carriers.</li>
-  <li>They open the door to spotting suspicious patterns (like the same VIN appearing in an unreasonable cluster of accidents).</li>
-</ul>
-
-<p>I still remember the moment this hit home. Some years ago, a police officer casually told me, “You should get a dashcam, insurance fraud is common around here.” His offhand comment stuck with me, but life moved on. Fast forward to our modern data pipeline, and suddenly those words didn’t seem so casual after all.</p>
-
-<hr />
-
-<h2 id="linking-crashes-together">Linking crashes together</h2>
-
-<p>After filtering out invalid VINs, we narrowed the dataset to roughly <em>~15 million crashes</em>. <em>(We also removed all drug and alcohol related crashes, since it’s unlikely someone committing insurance fraud would be under the influence.)</em> From there, our pipeline:</p>
-
-<ol>
-  <li>Counts how often the same VIN appears in a short interval (e.g., 6–12 months).</li>
-  <li>Flags overlapping or “back to back” insurance coverage for the same VIN.</li>
-  <li>Identifies repeated patterns of single vehicle collisions, nighttime crashes, and reported injuries.</li>
-</ol>
-
-<p>We’re not conducting a law enforcement sting, but we do want to spot anomalies that might warrant a closer look.</p>
-
-<p><img src="/assets/blog/insurance_fraud/vin_distribution.png" alt="While most VINs have ≤2 crashes, a small subset has ≥5 within 12 months" />
-<em>While most VINs have just ≤2 crashes, a subset had ≥5 crashes within a 12-month rolling window.</em></p>
-
-<hr />
-
-<h2 id="suspicious-indicators">Suspicious indicators</h2>
-
-<p>Industry white papers have pointed out the same red flags time and again. For example, the <a href="https://www.fbi.gov/news/stories/staged-accident-ring">FBI highlighted</a> a ring in Connecticut where one group of vehicles participated in over 50 staged accidents in just a few years. We’ve found similar signals:</p>
-
-<ul>
-  <li><strong>Multiple crashes:</strong> <em>≥2</em> accidents involving the same VIN in <em>≤6</em> months can raise a red flag.</li>
-  <li><strong>Multiple insurers:</strong> Switching insurers <em>A → B → C</em>, all in the span of <em>≤6</em> months suggests potential “double dipping.”</li>
-  <li><strong>Nighttime, no witness collisions:</strong> Late night single vehicle accidents with no witnesses are a recurring hallmark of <a href="https://www.insure.com/car-insurance/suspicious-loss-indicators.html#:~:text=,or%20replacement%20of%20covered%20property">staged accidents</a>.</li>
-  <li><strong>Injury Claims:</strong> Some fraud rings inflate payouts by reporting injuries.</li>
-  <li><strong>Single Vehicle Collisions:</strong> Coordinating a crash is simpler when you only involve one vehicle (though multi-vehicle rings exist, too).</li>
-</ul>
-
-<p>We combined these factors into a weighted <a href="https://www.sas.com/content/dam/SAS/bp_de/doc/whitepaper1/ri-wp-combating-insurance-claims-fraud-1925585.pdf#:~:text=damage%20for%20the%20nature%20of,flagged%20if"><em>propensity score</em></a> to prioritize which VINs were worth a closer inspection. It’s not a definitive fraud meter, just a helpful starting point.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th><strong>VIN</strong></th>
-      <th><strong>Max Crashes (6m)</strong></th>
-      <th><strong>Max Insurers (6m)</strong></th>
-      <th><strong>Max Injuries (12m)</strong></th>
-      <th><strong>Late Night Collisions (12m)</strong></th>
-      <th><strong>Single-Vehicle Crashes (12m)</strong></th>
-      <th><strong>Propensity Score</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>VIN1</td>
-      <td>3</td>
-      <td>3</td>
-      <td>2</td>
-      <td>3</td>
-      <td>3</td>
-      <td>7.6</td>
-    </tr>
-    <tr>
-      <td>VIN2</td>
-      <td>3</td>
-      <td>3</td>
-      <td>0</td>
-      <td>0</td>
-      <td>3</td>
-      <td>6.8</td>
-    </tr>
-    <tr>
-      <td>VIN3</td>
-      <td>3</td>
-      <td>3</td>
-      <td>0</td>
-      <td>0</td>
-      <td>3</td>
-      <td>6.8</td>
-    </tr>
-    <tr>
-      <td>VIN4</td>
-      <td>3</td>
-      <td>2</td>
-      <td>0</td>
-      <td>2</td>
-      <td>3</td>
-      <td>6.5</td>
-    </tr>
-    <tr>
-      <td>VIN5</td>
-      <td>3</td>
-      <td>3</td>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>6.5</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="insurance-switching">Insurance switching</h2>
-
-<p>Public crash data typically doesn’t provide official coverage start/end dates. As a workaround, we inferred coverage intervals based on the first and last incident listing a particular insurer for a VIN. If two or more such intervals overlapped (or happened back to back within days), we flagged it.</p>
-
-<p>It’s not ironclad evidence of fraud, but seeing multiple carriers handle the same VIN in a tight window definitely raised some eyebrows.</p>
-
-<p><img src="/assets/blog/insurance_fraud/insurance_swapping.png" alt="Overlapping insurance" />
-<em>See the overlap? Frequent insurance switching and coverage starting just days before a crash seems almost premeditated.</em></p>
-
-<hr />
-
-<h2 id="a-deeper-look">A deeper look</h2>
-
-<p><strong>VIN1</strong> caught our eye, so we stepped through the collision history:</p>
-
-<ol>
-  <li><strong>Short intervals between reported crashes</strong>
-    <ul>
-      <li>2018-05-20 (late night collision, property damage, single vehicle)</li>
-      <li>2018-06-30 (late night again, minor injury, single vehicle)</li>
-      <li>2018-10-10 (early morning, minor injury, single vehicle)</li>
-    </ul>
-  </li>
-  <li><strong>Insurance switching</strong>
-    <ul>
-      <li>Allstate covered the first incident. Progressive coverage began just before the first crash and ended after the second crash, at which point State Farm took over.</li>
-    </ul>
-  </li>
-  <li><strong>Suspicious environments</strong>
-    <ul>
-      <li>The collisions happened at times and locations with low traffic and no eyewitnesses.</li>
-    </ul>
-  </li>
-  <li><strong>Single vehicle collisions</strong>
-    <ul>
-      <li>Each crash was conveniently a single vehicle collision (phantom deer)</li>
-    </ul>
-  </li>
-</ol>
-
-<p>Does this prove fraud? Absolutely not. It might be a string of bad luck, or a driver who’s genuinely error prone. But if I were in claims management, I’d be curious to dig further.</p>
-
-<hr />
-
-<h2 id="why-this-matters">Why this matters</h2>
-
-<p>Fraud is a tricky subject. By some estimates, fraudulent claims cost the industry <a href="https://www.conroysimberg.com/blog/insurance-fraud-costs-the-u-s-308-billion-annually/">billions of dollars each year</a>. We think there’s value in showing how simple VIN analysis, layered with location and insurer data, can highlight <em>“risky”</em> patterns early on.</p>
-
-<ul>
-  <li>For insurers and fleet managers: these insights could guide how you allocate resources to Special Investigations Units (SIUs).</li>
-  <li>For risk managers: it’s a reminder that <em>where</em> (and <em>when</em>) an accident happens can be as telling as the crash details themselves.</li>
-  <li>For us: it’s simply a fascinating look into how raw data can surface unexpected truths.</li>
-</ul>
-
-<p><img src="/assets/blog/insurance_fraud/map.png" alt="Crash Map" />
-<em>Note: All vehicle and insurance details are <strong>anonymized</strong> for illustration.</em></p>
-
-<hr />
-
-<h3 id="footnotes">Footnotes</h3>
-
-<p>If you’re curious about how we generate our risk scores—or if you just want to compare notes—feel free to <a href="https://www.matrisk.ai/contact?product=crash-data-api">reach out to our team</a>. We’d love to hear your thoughts.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[…]]></summary></entry></feed>
+<footer>© 2025 made with ❤️ by Lev</footer>
+</div>
+  </body>
+</html>
