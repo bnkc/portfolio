@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Prompting vs. Supervised Learning: Warranty Classification at a Major Automaker"
+title: "2 Years of ML vs. 1 Month of Prompting"
 description: How we matched years of supervised learning work with 6 rounds of prompt engineering
 ---
 
