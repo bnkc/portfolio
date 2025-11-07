@@ -4,7 +4,7 @@ title: "2 Years of ML vs. 1 Month of Prompting"
 description: How we matched years of supervised learning work with 6 rounds of prompt engineering
 ---
 
-Recalls at major automakers cost hundreds of millions of dollars a year. It's a huge issue. To mitigate it, one company created an analytics department solely focused on categorizing warranty claims into actionable problems.
+Recalls at major automakers cost hundreds of millions of dollars a year. It's a huge issue. To mitigate it, our company created an analytics department solely focused on categorizing warranty claims into actionable problems.
 
 For decades, this team has relied on SQL queries to classify warranty data. But vehicles—and the language used to describe them—have evolved. SQL struggles with semantics, negations, and contextual nuance. Here's a fictional example of a claim we might see in the wild:
 
