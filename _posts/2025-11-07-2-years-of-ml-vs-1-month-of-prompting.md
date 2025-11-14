@@ -86,7 +86,7 @@ After 6 rounds of refinement, Nova Lite closed the performance gap and matchedâ€
 
 ## So What?
 
-Over multiple years, we built a supervised pipeline that worked. In 6 rounds of prompting, we matched it. That's the headline, but it's not the point. The real shift is that classification is no longer gated by data availability, annotation cycles, or pipeline engineering. The constraint movedâ€”from collecting examples to writing instructions. That's not a marginal improvement; it's a different way of building classifiers.
+Over multiple years, we built a supervised pipeline that worked. In 6 rounds of prompting, we matched it. That's the headline, but it's not the point. The real shift is that classification is no longer gated by data availability, annotation cycles, or pipeline engineering. 
 
 Supervised models still make sense when you have stable targets and millions of labeled samples. But in domains where the taxonomy drifts, the data is scarce, or the requirements shift faster than you can annotate, LLMs turn an impossible backlog into a prompt iteration loop.
 
