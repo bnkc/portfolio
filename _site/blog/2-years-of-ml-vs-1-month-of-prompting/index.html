@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2 Years of ML vs. 1 Month of Prompting</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -282,7 +286,7 @@
     </p>
   </header>
 
-  <p>Recalls at major automakers cost hundreds of millions of dollars a year. It’s a huge issue. To mitigate it, one company created an analytics department solely focused on categorizing warranty claims into actionable problems.</p>
+  <p>Recalls at major automakers cost hundreds of millions of dollars a year. It’s a huge issue. To mitigate it, our company created an analytics department solely focused on categorizing warranty claims into actionable problems.</p>
 
 <p>For decades, this team has relied on SQL queries to classify warranty data. But vehicles—and the language used to describe them—have evolved. SQL struggles with semantics, negations, and contextual nuance. Here’s a fictional example of a claim we might see in the wild:</p>
 
@@ -373,7 +377,7 @@
 
 <h2 id="so-what">So What?</h2>
 
-<p>Over multiple years, we built a supervised pipeline that worked. In 6 rounds of prompting, we matched it. That’s the headline, but it’s not the point. The real shift is that classification is no longer gated by data availability, annotation cycles, or pipeline engineering. The constraint moved—from collecting examples to writing instructions. That’s not a marginal improvement; it’s a different way of building classifiers.</p>
+<p>Over multiple years, we built a supervised pipeline that worked. In 6 rounds of prompting, we matched it. That’s the headline, but it’s not the point. The real shift is that classification is no longer gated by data availability, annotation cycles, or pipeline engineering.</p>
 
 <p>Supervised models still make sense when you have stable targets and millions of labeled samples. But in domains where the taxonomy drifts, the data is scarce, or the requirements shift faster than you can annotate, LLMs turn an impossible backlog into a prompt iteration loop.</p>
 
